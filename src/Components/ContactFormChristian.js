@@ -86,14 +86,14 @@ export default function ContactForm(props) {
                 />
             </label>
             <br />
-            <label>Message:&nbsp;
-                <textarea
-                    name='message'
-                    placeholder='Share your thoughts with us (max 250 characters)'
-                    value={formData.message}
-                    onChange={onChange}
-                />
-            </label>
+            <textarea
+                name='message'
+                placeholder='Share your thoughts with us (max 250 characters)'
+                value={formData.message}
+                onChange={onChange}
+                cols='30'
+                rows='10'
+            />
             <br />
             <button disabled={disabled}>Send message</button>
         </form>
