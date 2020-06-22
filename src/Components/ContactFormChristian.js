@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as Yup from 'yup'
 import formSchema from '../validation/contactFormSchema'
 import ErrorDiv from '../StyledComponents/ErrorDiv'
+import StyledForm from '../StyledComponents/StyledForm'
 
 const initialFormData = {
     name: '',
@@ -50,6 +51,7 @@ export default function ContactForm(props) {
 
     const onSubmit = e => {
         e.preventDefault()
+        setFormData(initialFormData)
     }
 
     useEffect(() => {
@@ -59,7 +61,7 @@ export default function ContactForm(props) {
     }, [formData])
 
     return (
-        <form id='contact-form' onSubmit={onSubmit}>
+        <StyledForm id='contact-form' onSubmit={onSubmit}>
             <h2>Reach Out to Us</h2>
             
             <ErrorDiv>
@@ -96,6 +98,6 @@ export default function ContactForm(props) {
             />
             <br />
             <button disabled={disabled}>Send message</button>
-        </form>
+        </StyledForm>
     )
 }
