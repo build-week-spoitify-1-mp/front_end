@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosWithAuth = () => {
-  const token = window.localStorage.getItem("token"); // Retrieve token from local storage
+  const token = window.localStorage.getItem("spotify_token"); // Retrieve token from local storage
 
   return axios.create({ // Return new instance of axios
     headers: {

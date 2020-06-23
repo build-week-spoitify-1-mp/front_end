@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Route } from "react-router-dom";
+import { connect } from 'react-redux'
+import { getAuth } from '../../utils/getAuth'
 
 // Components
 import Sidebar from './Sidebar'
@@ -20,7 +22,16 @@ const StyledDashboard = styled.div`
 `
 
 
+// TODO: New user has tags suggest on homepage
+// TODO: Existing user UX: HOME display current favorites, click to go to suggestions
+// TODO: Pages: Home(auto), Favorites, Search(?), Suggestions,
+
 const Dashboard = props => {
+
+    // Connect to Spotify Web API
+    useEffect(() => {
+        getAuth()
+    }, [])
 
     return(
         <StyledDashboard>
@@ -33,4 +44,11 @@ const Dashboard = props => {
     )
 }
 
-export default Dashboard
+const mapStateToProps = state => {
+    return {
+        songs: state.songs,
+        error: state.error
+    }
+}
+
+export default connect(mapStateToProps, {})(Dashboard)
