@@ -4,21 +4,21 @@ import formSchema from '../validation/contactFormSchema'
 import ErrorDiv from '../StyledComponents/ErrorDiv'
 import StyledForm from '../StyledComponents/StyledForm'
 
-const initialFormData = {
-    name: '',
-    email: '',
-    message: '',
-}
-
-const initialFormErrors = {
-    name: '',
-    email: '',
-    message: '',
-}
-
-const initialDisabled = true
-
 export default function ContactForm(props) {
+    const initialFormData = {
+        name: '',
+        email: '',
+        message: '',
+    }
+
+    const initialFormErrors = {
+        name: '',
+        email: '',
+        message: '',
+    }
+
+    const initialDisabled = true
+    
     const [formData, setFormData] = useState(initialFormData)
     const [formErrors, setFormErrors] = useState(initialFormErrors)
     const [disabled, setDisabled] = useState(initialDisabled)
