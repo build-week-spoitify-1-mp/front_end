@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from "axios";
 
 const Login = props => {
   // make a post request to retrieve a token from the api
@@ -16,20 +16,27 @@ const Login = props => {
   const login = event => {
     event.preventDefault();
     // Make a POST request and send the credentials object to the API
-    axiosWithAuth()
-      .post("/api/login", credentials)
+    axios
+    .post('https://bw-spotify1-mp.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
+      headers: {
+        // btoa is converting our client id/client secret into base64
+        Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
       .then(response => {
-        window.localStorage.setItem("token", response.data.payload)
-
-        props.history.push("/protected")
+          console.log(response)
+        window.localStorage.setItem('token', response.data.access_token);
+        props.history.push('/dashboard');
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
+
   
 
   return (
     <div>
-      <h1>Welcome to the Bubble App!</h1>
+      <h1>Login!</h1>
          <form onSubmit={login}>
           <input
             type="text"
