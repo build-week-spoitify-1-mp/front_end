@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react'
 import SongCard from './SongCard'
 import { axiosSpotify } from '../utils/axiosSpotify'
 import { getAuth } from '../utils/getAuth'
+import StyledSongList from '../StyledComponents/StyledSongList'
 
 export default function SongSearch(props) {
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
     const [queryString, setQueryString] = useState('')
     const [songList, setSongList] = useState([])
     
     const onSearchQueryChange = e => {
         const newQuery = e.target.value
-        setSearchQuery(newQuery)
+        setSearchTerm(newQuery)
     }
 
     const onSearchSubmit = e => {
-        setQueryString(searchQuery.trim().split(" ").join("+"))
+        e.preventDefault()
+        setQueryString(searchTerm.trim().split(" ").join("+"))
     }
 
     useEffect(() => {
@@ -35,15 +37,17 @@ export default function SongSearch(props) {
 
     return (
         <div>
-            <input 
-                type="text"
-                name="searchQuery"
-                value={searchQuery}
-                onChange={onSearchQueryChange}
-            />&nbsp;
-            <button onClick={onSearchSubmit}>Search</button>
+            <form onSubmit={onSearchSubmit}>
+                <input 
+                    type="text"
+                    name="searchQuery"
+                    value={searchTerm}
+                    onChange={onSearchQueryChange}
+                />&nbsp;
+                <button>Search</button>
+            </form>
             
-            <ul>
+            <StyledSongList>
                 {
                     queryString !== ''
                     ? songList.map(song => {
@@ -51,7 +55,7 @@ export default function SongSearch(props) {
                     })
                     : <p>Please search for a song or artist</p>
                 }
-            </ul>
+            </StyledSongList>
         </div>
     )
 }

@@ -18,7 +18,7 @@ export default function SongCard({ song }) {
             <p>Title: {song.name}</p>
             <p>Artist(s):&nbsp;
                 {
-                    <span>{artists.join(", ")}</span>
+                    <span className='artists'>{artists.join(", ")}</span>
                 }
             </p>
             <p>Album: {song.album.name}</p>
