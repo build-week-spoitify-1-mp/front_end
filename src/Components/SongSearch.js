@@ -54,7 +54,7 @@ export default function SongSearch(props) {
                     ? songList.map(song => {
                         return <SongCard key={song.id} song={song} setFavoriteSongs={setFavoriteSongs} favoriteSongs={favoriteSongs} />
                     })
-                    : <p>Please search for a song or artist</p>
+                    : <h2>Please search for a track</h2>
                 }
             </StyledSongList>
         </div>

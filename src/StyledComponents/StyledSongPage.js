@@ -30,5 +30,9 @@ export default styled.div`
         p {
             font-size: 1.5rem;
         }
+
+        button {
+            align-self: flex-start;
+        }
     }
 `

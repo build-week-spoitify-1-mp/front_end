@@ -12,7 +12,7 @@ export default function SongPage(props) {
     const history = useHistory()
 
     const backButtonOnClick = e => {
-        history.push('/')
+        history.goBack()
     }
 
     const msToMinutesandSeconds = ms => {
@@ -54,7 +54,7 @@ export default function SongPage(props) {
     return (
         <StyledSongPage>
             <div className='song-info'>
-                <button onClick={backButtonOnClick}>Back to search</button>
+                <button onClick={backButtonOnClick}>Back</button>
                 <h2>Track name: {song.name}</h2>
                 <h2>{artists.length > 1 ? 'Artists:' : 'Artist:'}&nbsp;
                     {
