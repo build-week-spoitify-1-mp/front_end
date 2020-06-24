@@ -3,6 +3,7 @@ import SongCard from './SongCard'
 import { axiosSpotify } from '../utils/axiosSpotify'
 import { getAuth } from '../utils/getAuth'
 import StyledSongList from '../StyledComponents/StyledSongList'
+import StyledSearchBar from '../StyledComponents/StyledSearchBar'
 
 export default function SongSearch(props) {
     const [searchTerm, setSearchTerm] = useState('')
@@ -38,7 +39,7 @@ export default function SongSearch(props) {
 
     return (
         <div>
-            <form onSubmit={onSearchSubmit}>
+            <StyledSearchBar onSubmit={onSearchSubmit}>
                 <input 
                     type="text"
                     name="searchQuery"
@@ -46,7 +47,7 @@ export default function SongSearch(props) {
                     onChange={onSearchQueryChange}
                 />&nbsp;
                 <button>Search</button>
-            </form>
+            </StyledSearchBar>
             
             <StyledSongList>
                 {

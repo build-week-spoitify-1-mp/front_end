@@ -5,18 +5,19 @@ import FavoritesList from './Components/FavoritesList'
 import SongPage from './Components/SongPage'
 import { Switch, Route, NavLink } from 'react-router-dom'
 import Recommended from './Components/Recommended';
+import StyledNav from './StyledComponents/StyledNav'
 
 function App() {
   const [favoriteSongs, setFavoriteSongs] = useState([])
   
   return (
     <div className="App">
-      <nav>
-        <NavLink to='/'>Search</NavLink>&nbsp;
-        <NavLink to='/favorites'>Favorites</NavLink>&nbsp;
-        <NavLink to='/recommended'>Recommended</NavLink>&nbsp;
-        <NavLink to='/contact'>Contact</NavLink>&nbsp;
-      </nav>
+      <StyledNav>
+        <NavLink exact to='/' activeClassName='active'>Search</NavLink>&nbsp;
+        <NavLink to='/favorites' activeClassName='active'>Favorites</NavLink>&nbsp;
+        <NavLink to='/recommended' activeClassName='active'>Recommended</NavLink>&nbsp;
+        <NavLink to='/contact' activeClassName='active'>Contact</NavLink>&nbsp;
+      </StyledNav>
       <Switch>
         <Route path='/songs/:songId'>
           <SongPage />
