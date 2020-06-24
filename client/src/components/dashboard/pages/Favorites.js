@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react'
 
-// Utils
-import { getTrack } from '../../../utils/getTrack'
+// Style
+import styled from 'styled-components'
+
+// Components
+import SongCard from '../SongCard'
+
+const FavoritesPage = styled.div`
+
+    .favorites-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+`
 
 const Favorites = props => {
-
-
-    useEffect(() => {
-    }, [])
-
     return (
-        <div className='favorites'>
-            <p>You've hit the favorites page</p>
-        </div>
+        <FavoritesPage>
+            <h3>Favorites</h3>
+            <div className='favorites-list'>
+                {
+                    props.songData.map(song => {
+                        return <SongCard key={song.id} song={song} />
+                    })
+                }
+            </div>
+        </FavoritesPage>
     )
 }
 

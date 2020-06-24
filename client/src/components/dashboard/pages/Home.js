@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 // Utils
-import { axiosSpotify } from '../../../utils/axiosSpotify'
-
 const trackID = '5dalRkw5u1HTeFwfJQSDLz'
 
 
 
 const Home = props => {
-    const [songs, setSongs] = useState([])
 
     return (
         <div className='home'>
-            <h3>Favorite tracks</h3>
-            <div className='favorite-list'>
-                
-            </div>
+            <h3>Home</h3>
+            
         </div>
     )
 }

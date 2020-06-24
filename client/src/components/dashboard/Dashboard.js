@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { connect } from 'react-redux'
 
@@ -48,15 +48,25 @@ const StyledDashboard = styled.div`
 // TODO: add menu items
 // TODO: add logout button to bottom
 
+const testTrackID = '5dalRkw5u1HTeFwfJQSDLz'
+
 const Dashboard = props => {
-    const { getUser } = props
+    const { getUser, getSongs } = props
     const { path } = useRouteMatch()
 
-    // Connect to Spotify Web API & Populate Store with songs
+    // Connect to Spotify Web API & Get user info
     useEffect(() => {
         getAuth()
         getUser()
     }, [])
+
+    
+
+    useEffect(() => {
+        if(props.user.favesongs.length > 0) {
+            getSongs(props.user.favesongs)
+        }
+    }, [props.user])
 
     return(
         <StyledDashboard>
@@ -67,7 +77,7 @@ const Dashboard = props => {
                         <Home />
                     </Route>
                     <Route path={`${path}/favorites`}>
-                        <Favorites favesongs={props.user.favesongs}/>
+                        <Favorites songData={props.songData}/>
                     </Route>
                 </Switch>
             </div>
@@ -78,6 +88,7 @@ const Dashboard = props => {
 const mapStateToProps = state => {
     return {
         user: state.user,
+        songData: state.songData,
         error: state.error,
         isFetchingData: state.isFetchingData,
     }

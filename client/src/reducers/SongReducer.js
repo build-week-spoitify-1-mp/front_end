@@ -1,8 +1,13 @@
 // Actions
-import { GET_SONGS, UPDATE_SONGS, GET_USER, SET_ERROR } from '../actions'
+import { GET_SONGS, UPDATE_SONGS, GET_USER, ADD_FAVE, DELETE_FAVE, SET_ERROR } from '../actions'
 
 const initialState = {
-    user: {},
+    user: {
+        userid: 0,
+        username: '',
+        email: '',
+        favesongs: [],
+    },
     songData: [],
     isFetchingData: false,
     error: '',
@@ -24,7 +29,21 @@ export const songReducer = (state = initialState, action) => {
         case GET_USER:
             return {
                 ...state,
-                user: action.payload,
+                user: {
+                    userid: action.payload.userid,
+                    username: action.payload.username,
+                    email: action.payload.email,
+                    favesongs: [...(action.payload.favesongs)]
+                }
+            }
+            
+        case ADD_FAVE:
+            return {
+                ...state
+            }
+        case DELETE_FAVE:
+            return {
+                ...state
             }
 
 
