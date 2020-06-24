@@ -18,7 +18,7 @@ export default function Recommended(props) {
                     return song.id
             })
     
-            return seedTrackIdsArray.join(',')
+            return seedTrackIdsArray.slice(0,5).join(',')
         }
         
         if (favoriteSongs.length > 0){
@@ -32,7 +32,7 @@ export default function Recommended(props) {
                     console.log('There be an error', err)
                 })
         }
-    }, [favoriteSongs])
+    }, [])
     
     return (
         <StyledSongList>
