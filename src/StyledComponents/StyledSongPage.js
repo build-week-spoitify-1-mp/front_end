@@ -6,7 +6,7 @@ export default styled.div`
     margin: 50px auto;
 
     img {
-        width: 50%;
+        width: 40%;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
     }
@@ -21,6 +21,7 @@ export default styled.div`
         justify-content: space-evenly;
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
+        padding: 20px;
 
         h2 {
             font-size: 2rem;

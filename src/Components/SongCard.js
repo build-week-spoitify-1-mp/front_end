@@ -45,7 +45,7 @@ export default function SongCard({ song, setFavoriteSongs, favoriteSongs }) {
         <StyledSongCard>
             <div className='song-info'>
             <p>Title: {song.name}</p>
-            <p>Artist(s):&nbsp;
+            <p>{artists.length > 1 ? 'Artists:' : 'Artist:'}&nbsp;
                 {
                     <span className='artists'>{artists.join(", ")}</span>
                 }
@@ -54,7 +54,7 @@ export default function SongCard({ song, setFavoriteSongs, favoriteSongs }) {
             {
                 !favorited 
                 ? <button onClick={onFavorite}>Add to favorites</button>
-                : <button>Unfavorite</button>
+                : ''
             }
             </div>
             <Link to={`/songs/${song.id}`}>
