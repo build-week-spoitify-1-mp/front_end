@@ -28,7 +28,7 @@ function App() {
           <FavoritesList favoriteSongs={favoriteSongs} />
         </Route>
         <Route path='/recommended'>
-          <Recommended favoriteSongs={favoriteSongs}/>
+          <Recommended favoriteSongs={favoriteSongs} setFavoriteSongs={setFavoriteSongs}/>
         </Route>
         <Route path='/'>
           <SongSearch setFavoriteSongs={setFavoriteSongs} favoriteSongs={favoriteSongs}/>
