@@ -9,6 +9,9 @@ import { background, accent_main } from '../theme'
 import { faHome, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// Components
+import SearchBar from './SearchBar'
+
 const StyledSidebar = styled.div`
     position: fixed;
     width: 20%;
@@ -55,6 +58,7 @@ const Sidebar = props => {
     return (
         <StyledSidebar>
             <h2>Spotify Song Finder</h2>
+            <SearchBar />
             <ul>
                 <Link to={`${url}`}><li><span><FontAwesomeIcon icon={faHome} /> Home</span></li></Link>
                 <Link to={`${url}/favorites`}><li><span><FontAwesomeIcon icon={faHeart} /> Favorites</span></li></Link>

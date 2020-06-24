@@ -21,7 +21,7 @@ import { background, background_variant, accent_main } from '../theme'
 
 const StyledDashboard = styled.div`
     display: flex;
-    
+
     .content {
         margin-left: 20%;
         min-height: 100vh;
@@ -37,7 +37,6 @@ const StyledDashboard = styled.div`
 
 // Sidebar
 // TODO: add search bar
-// TODO: add menu items
 // TODO: add logout button to bottom
 
 const testTrackID = '5dalRkw5u1HTeFwfJQSDLz'
