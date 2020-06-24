@@ -68,3 +68,16 @@
   text-decoration: none;
   color: white;
 }
+
+.submitAccount {
+  height: 40px;
+  width: 110px;
+  background-color: #282c34;
+  color: white;
+  border: solid white 2px;
+}
+
+.supportLink {
+  text-decoration: none;
+  color: white;
+}
