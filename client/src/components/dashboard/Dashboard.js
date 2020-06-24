@@ -21,18 +21,10 @@ import { background, background_variant, accent_main } from '../theme'
 
 const StyledDashboard = styled.div`
     display: flex;
-
-    .sidebar {
-        width: 20%;
-        min-height: 100vh;
-        background-color: ${background};
-
-        h2 {
-            text-align: center;
-            color: ${accent_main}
-        }
-    }
+    
     .content {
+        margin-left: 20%;
+        min-height: 100vh;
         width: 80%;
         background-color: ${background_variant};
     }

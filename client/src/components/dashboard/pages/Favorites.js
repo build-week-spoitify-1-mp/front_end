@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react'
 
 // Style
 import styled from 'styled-components'
+import { accent_main } from '../../theme'
 
 // Components
 import SongCard from '../SongCard'
 
 const FavoritesPage = styled.div`
-
+    h3 {
+        text-align: center;
+        color: ${accent_main};
+        font-weight: 900;
+    }
     .favorites-list {
         display: flex;
         flex-wrap: wrap;

@@ -13,7 +13,7 @@ export const getUser = () => dispatch => {
     axiosWithAuth()
         .get('/users/getuserinfo')
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 dispatch({ type: GET_USER, payload: response.data})
             })
             .catch(error => {
@@ -26,7 +26,6 @@ export const getSongs = (favesongs) => {
     const songIDList = [...favesongs].map(song => {
         return song.trackid
     })
-    console.log(songIDList)
 
     return dispatch => {
         dispatch({ type: GET_SONGS })
@@ -34,7 +33,7 @@ export const getSongs = (favesongs) => {
         axiosSpotify()
             .get(`/tracks/?ids=${songIDList.toString()}`)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 dispatch({ type: UPDATE_SONGS, payload: response.data.tracks })
             })
             .catch(error => {
