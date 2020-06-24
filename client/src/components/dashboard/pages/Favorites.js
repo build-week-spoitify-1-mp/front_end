@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+// Utils
+import { getTrack } from '../../../utils/getTrack'
 
 const Favorites = props => {
+
+
+    useEffect(() => {
+    }, [])
 
     return (
         <div className='favorites'>

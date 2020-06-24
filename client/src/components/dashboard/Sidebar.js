@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Switch } from 'react-router-dom';
+import { Link, Switch, useRouteMatch } from 'react-router-dom';
 // Style
 import styled from 'styled-components'
 import { background, accent_main } from '../theme'
@@ -14,15 +14,22 @@ const StyledSidebar = styled.div`
         color: ${accent_main}
     }
 `
-// TODO: add search bar
-// TODO: add menu items
-// TODO: add logout button to bottom
+
 
 const Sidebar = props => {
+    const { url } = useRouteMatch()
 
     return (
         <StyledSidebar>
             <h2>Spotify Song Finder</h2>
+            <ul>
+                <li>
+                    <Link to={`${url}`}>Home</Link>
+                </li>
+                <li>
+                    <Link to={`${url}/favorites`}>Favorites</Link>
+                </li>
+            </ul>
         </StyledSidebar>
     )
 }

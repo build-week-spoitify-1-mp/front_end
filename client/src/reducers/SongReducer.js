@@ -1,13 +1,14 @@
 // Actions
-import { GET_SONGS, UPDATE_SONGS, SET_ERROR } from '../actions'
+import { GET_SONGS, UPDATE_SONGS, GET_USER, SET_ERROR } from '../actions'
 
 const initialState = {
-    songs: [],
+    user: {},
+    songData: [],
     isFetchingData: false,
     error: '',
 }
 
-export const filmReducer = (state = initialState, action) => {
+export const songReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_SONGS:
             return {
@@ -17,9 +18,16 @@ export const filmReducer = (state = initialState, action) => {
         case UPDATE_SONGS:
             return {
                 ...state,
-                songs: action.payload,
+                songData: action.payload,
                 isFetchingData: false,
             }
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload,
+            }
+
+
         case SET_ERROR:
             return {
                 ...state,

@@ -11,6 +11,7 @@ import { songReducer } from './reducers/songReducer'
 // Components
 import PrivateRoute from './components/PrivateRoute'
 import Login from './components/Login'
+import Signup from './components/Signup'
 import Dashboard from './components/dashboard/Dashboard'
 
 const store = createStore(songReducer, applyMiddleware(thunk))
@@ -22,8 +23,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
         </div>
       </Router>
     </Provider>

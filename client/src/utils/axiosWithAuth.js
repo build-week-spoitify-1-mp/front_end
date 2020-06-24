@@ -1,12 +1,12 @@
 import axios from "axios";
 
 export const axiosWithAuth = () => {
-  const token = window.localStorage.getItem("spotify_token"); // Retrieve token from local storage
+  const token = window.localStorage.getItem("user_token"); // Retrieve token from local storage
 
   return axios.create({ // Return new instance of axios
     headers: {
-      authorization: token
+      Authorization: `Bearer ${token}`
     },
-    baseURL: "http://localhost:5000"
+    baseURL: "https://bw-spotify1-mp.herokuapp.com"
   });
 };

@@ -28,7 +28,7 @@ export const getAuth = () => {
             headers
         )
         .then(response => {
-            console.log(response)
+            // console.log(response)
             window.localStorage.setItem("spotify_token", response.data.access_token);
         })
         .catch(error => {console.log(error)})

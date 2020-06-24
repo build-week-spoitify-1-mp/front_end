@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+
 const Login = props => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
@@ -18,7 +19,7 @@ const Login = props => {
     // Make a POST request and send the credentials object to the API
     axios
     .post('https://bw-spotify1-mp.herokuapp.com/login', `grant_type=password&username=${credentials.username}&password=${credentials.password}`, {
-      headers: {
+      headers: { 
         // btoa is converting our client id/client secret into base64
         Authorization: `Basic ${btoa('lambda-client:lambda-secret')}`,
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -26,8 +27,8 @@ const Login = props => {
     })
       .then(response => {
           console.log(response)
-        window.localStorage.setItem('token', response.data.access_token);
-        props.history.push('/dashboard');
+          window.localStorage.setItem('user_token', response.data.access_token);
+          props.history.push('/dashboard');
       })
       .catch(error => console.log(error));
   }
@@ -56,4 +57,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default Login
