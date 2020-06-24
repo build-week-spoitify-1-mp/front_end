@@ -8,6 +8,7 @@ export default function SongSearch(props) {
     const [searchTerm, setSearchTerm] = useState('')
     const [queryString, setQueryString] = useState('')
     const [songList, setSongList] = useState([])
+    const { setFavoriteSongs, favoriteSongs } = props 
     
     const onSearchQueryChange = e => {
         const newQuery = e.target.value
@@ -51,7 +52,7 @@ export default function SongSearch(props) {
                 {
                     queryString !== ''
                     ? songList.map(song => {
-                        return <SongCard key={song.id} song={song} />
+                        return <SongCard key={song.id} song={song} setFavoriteSongs={setFavoriteSongs} favoriteSongs={favoriteSongs} />
                     })
                     : <p>Please search for a song or artist</p>
                 }

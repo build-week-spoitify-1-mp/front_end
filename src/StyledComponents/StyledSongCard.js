@@ -10,7 +10,7 @@ export default styled.div`
     border-radius: 10px;
 
     img {
-        max-width: 50%;
+        max-width: 100%;
     }
 
     .song-info {
@@ -18,5 +18,14 @@ export default styled.div`
         display: flex;
         flex-direction: column;
         font-weight: bold;
+        justify-content: space-evenly;
+    }
+
+    button {
+        width: 50%;
+    }
+
+    a {
+        width: 50%;
     }
 `
