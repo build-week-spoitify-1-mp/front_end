@@ -42,12 +42,16 @@ const Login = props => {
           <input
             type="text"
             name="username"
+            placeholder="Username"
+            autoComplete="off"
             value={credentials.username}
             onChange={handleChanges}
           />
           <input
             type="password"
             name="password"
+            placeholder="Password"
+            autoComplete="off"
             value={credentials.password}
             onChange={handleChanges}
           />

@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+// Redux
+import { connect } from 'react-redux'
+import { addFave, deleteFave } from '../../actions/index'
 
 // Style
 import styled from 'styled-components'
@@ -10,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledCard = styled.div`
     margin: 0 2%;
-    width: 23%;
+    width: 20%;
     background-color: ${background};
     border-radius: 10px;
 
@@ -46,7 +50,7 @@ const StyledCard = styled.div`
                 background-color: ${background};
                 border: none;
                 color: white;
-                padding: 5%;
+                padding: 4% 5%;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
@@ -86,14 +90,54 @@ const StyledCard = styled.div`
 `
 
 const SongCard = props => {
+    const [favorited, setFavorited] = useState(false)
+    const [faveObj, setFaveObj] = useState()
+
+    const handleFavorite = () => {
+        // If song is favorited, delete it
+        // If the song isn't favorited, add it
+        if(favorited){
+            props.deleteFave(faveObj.favesongid)
+        } else {
+            props.addFave(props.user.userid, props.song.id)
+        }
+    }
+
+    const handleSuggest = () => {
+        props.changeHistory(`/dashboard/suggestions/${props.song.id}`)
+    }
+
+    useEffect(() => {
+        // set faveID to favesong object if found in the favesong
+        const result = props.user.favesongs.find((favesong) => {
+            return (favesong.trackid === props.song.id)
+        })
+        if(result){
+            setFaveObj({
+                ...faveObj,
+                favesongid: result.favesongid, 
+                trackid: result.trackid
+            })
+        }
+    }, [])
+
+    useEffect(() => {
+        if (faveObj) {
+            setFavorited(favorited => !favorited)
+        }
+    }, [faveObj])
 
     return (
         <StyledCard>
             <div className='image-container'>
                 <img src={props.song.album.images[1].url} alt={`Cover art of the album "${props.song.album.name}"`}/>
                 <div className="overlay">
-                    <button className='favorite'><FontAwesomeIcon icon={faHeart} /></button>
-                    <button><FontAwesomeIcon icon={faCompactDisc} /></button>
+                    <button className='favorite'>
+                        <FontAwesomeIcon icon={faHeart} onClick={handleFavorite}/>
+                    </button>
+                    <button>
+                        <FontAwesomeIcon icon={faCompactDisc} onClick={handleSuggest}/>
+                    </button>
                     <button><FontAwesomeIcon icon={faLink} /></button>
                 </div>
             </div>
@@ -105,4 +149,10 @@ const SongCard = props => {
     )
 }
 
-export default SongCard
+const mapStateToProps = state => {
+    return {
+        user: state.user,
+    }
+}
+
+export default connect(mapStateToProps, { addFave, deleteFave })(SongCard)

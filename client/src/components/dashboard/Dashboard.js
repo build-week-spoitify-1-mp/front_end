@@ -9,15 +9,16 @@ import { getSongs, getUser } from '../../actions'
 import Sidebar from './Sidebar'
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
+import Suggestions from './pages/Suggestions'
+import Search from './pages/Search'
 
 // Utils
 import { getAuth } from '../../utils/getAuth'
-import { addFavoriteSong } from '../../utils/addFavoriteSong'
 
 
 // Style
 import styled from 'styled-components'
-import { background, background_variant, accent_main } from '../theme'
+import { background_variant } from '../theme'
 
 const StyledDashboard = styled.div`
     display: flex;
@@ -33,13 +34,11 @@ const StyledDashboard = styled.div`
 // General
 // TODO: New user has tags suggest on homepage
 // TODO: Existing user UX: HOME display current favorites, click to go to suggestions
-// TODO: Pages: Home(auto), Favorites, Search(?), Suggestions,
+// TODO: Pages: Home(auto), Favorites, Search(?), Suggestions
+// TODO: Hook up adding/deleteing favorite song
 
 // Sidebar
-// TODO: add search bar
 // TODO: add logout button to bottom
-
-const testTrackID = '5dalRkw5u1HTeFwfJQSDLz'
 
 const Dashboard = props => {
     const { getUser, getSongs } = props
@@ -48,10 +47,11 @@ const Dashboard = props => {
     // Connect to Spotify Web API & Get user info
     useEffect(() => {
         getAuth()
-        getUser()
     }, [])
 
-    
+    useEffect(() => {
+        getUser()
+    }, [props.needsRefresh])
 
     useEffect(() => {
         if(props.user.favesongs.length > 0) {
@@ -59,17 +59,36 @@ const Dashboard = props => {
         }
     }, [props.user])
 
+    const changeHistory = location => {
+        props.history.push(location)
+    }
+
     return(
         <StyledDashboard>
-            <Sidebar />
+            <Sidebar changeHistory={changeHistory}/>
             <div className='content'>
                 <Switch>
                     <Route exact path={`${path}`}>
                         <Home />
                     </Route>
                     <Route path={`${path}/favorites`}>
-                        <Favorites songData={props.songData}/>
+                        <Favorites songData={props.songData} changeHistory={changeHistory}/>
                     </Route>
+                    <Route exact path={`${path}/suggestions`}>
+                        <Suggestions lastFaveTrackID={{...props.user.favesongs[(props.user.favesongs.length - 1)]}}/>
+                    </Route>
+                    <Route path={`${path}/suggestions/:trackid`}>
+                        <Suggestions />
+                    </Route>
+
+                    <Switch>
+                        <Route exact path={`${path}/search`}>
+                            <h2>Please enter a search query</h2>
+                        </Route>
+                        <Route path={`${path}/search/:query`}>
+                            <Search changeHistory={changeHistory}/>
+                        </Route>
+                    </Switch>
                 </Switch>
             </div>
         </StyledDashboard>
@@ -82,6 +101,7 @@ const mapStateToProps = state => {
         songData: state.songData,
         error: state.error,
         isFetchingData: state.isFetchingData,
+        needsRefresh: state.needsRefresh
     }
 }
 

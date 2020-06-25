@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-// TODO: Finish signupSubmit
 const Signup = props => {
     // make a post request to retrieve a token from the api
     // when you have handled the token, navigate to the BubblePage route
@@ -35,18 +34,24 @@ const Signup = props => {
             <input
               type="text"
               name="username"
+              placeholder="Username"
+              autoComplete="off"
               value={credentials.username}
               onChange={handleChanges}
             />
             <input
               type="password"
               name="password"
+              placeholder="Password"
+              autoComplete="off"
               value={credentials.password}
               onChange={handleChanges}
             />
             <input
               type="email"
               name="email"
+              placeholder="E-mail"
+              autoComplete="off"
               value={credentials.email}
               onChange={handleChanges}
             />

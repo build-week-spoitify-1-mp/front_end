@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // Style
 import styled from 'styled-components'
@@ -25,10 +25,29 @@ const StyledSearchBar = styled.div`
 `
 
 const SearchBar = props => {
+    const [newSearch, setNewSearch] = useState("")
+
+    const handleChange = event => {
+        setNewSearch(event.target.value)
+    }
+    
+    const handleSubmit = event => {
+        const searchQuery = newSearch.trim().split(" ").join("+")
+        event.preventDefault()
+        props.changeHistory(`/dashboard/search/${searchQuery}`)
+        setNewSearch("")
+    }
 
     return (
         <StyledSearchBar>
-            <input type="text" placeholder="Search..."></input>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text"
+                    name="search"
+                    placeholder="Search..."
+                    autoComplete="off"
+                    onChange={handleChange}></input>
+            </form>
         </StyledSearchBar>
     )
 }
