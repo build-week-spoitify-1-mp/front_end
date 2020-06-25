@@ -11,7 +11,7 @@ import { accent_main } from '../../theme'
 import SongCard from '../SongCard'
 
 const SuggestionsPage = styled.div`
-    h3 {
+    h2 {
         text-align: center;
         color: ${accent_main};
         font-weight: 900;
@@ -19,6 +19,7 @@ const SuggestionsPage = styled.div`
     .reccomend-list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 `
 
@@ -66,7 +67,7 @@ const Suggestions = props => {
 
     return (
         <SuggestionsPage>
-            <h3>Suggestions for {songID ? song.name: ''}</h3>
+            <h2>Suggestions for {songID ? song.name: ''}</h2>
             <div className="main-song">
                 
             </div>
