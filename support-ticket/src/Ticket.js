@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { useHistory } from "react-router-dom";
+import PastTickets from "./PastTickets";
 
 function Ticket() {
-  const history = useHistory();
 
-  const [myTicket, setMyTicket] = useState({
-    name: "",
-    email: "",
-    issue: ""
-  });
-    
-  const [finalTicket, setFinalTicket] = useState({
-    name: "",
-    email: "",
-    issue: ""
-  });
+  const [myTicket, setMyTicket] = useState(
+    {
+      name: "",
+      email: "",
+      issue: ""
+    }
+  );
     
   const inputChange = (event) => {
     setMyTicket({
@@ -24,12 +19,26 @@ function Ticket() {
     });
   };
 
+  const [finalTicket, setFinalTicket] = useState([]);
+
   const formSubmit = (event) => {
     event.preventDefault()
-    setFinalTicket(myTicket)
-    console.log(myTicket)
-    history.push("/TicketReceived")
+    setFinalTicket([...finalTicket, myTicket])
+    console.log(finalTicket);
   };
+
+  const deleteButton = (event) => {
+    event.preventDefault()
+    setFinalTicket([]);
+    console.log(finalTicket);
+  }
+
+  const editButton = (event) => {
+    event.preventDefault()
+    var numToEdit = finalTicket.length - 1;
+    setFinalTicket(finalTicket[numToEdit] = [myTicket])
+    console.log(finalTicket);
+  }
 
   return (
     <div className="options">
@@ -71,6 +80,17 @@ function Ticket() {
           />
         </label>
         <br /><button type="submit" className="submit">Submit Ticket</button>
+      </form>
+      <h1>Your Tickets:</h1>
+      {finalTicket.map(ticketObj => {
+        return <PastTickets key={ticketObj.name} newTicket={ticketObj} />
+      })}
+
+      <form onSubmit={deleteButton}>
+        <button type="submit" className="deleteButton">Delete All Tickets</button>
+      </form>
+      <form onSubmit={editButton}>
+        <button type="submit" className="editButton">Edit Last Ticket</button>
       </form>
     </div>
   )
