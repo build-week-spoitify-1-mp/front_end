@@ -23,8 +23,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={Signup} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
         </div>
       </Router>

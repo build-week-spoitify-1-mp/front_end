@@ -26,7 +26,7 @@ const Favorites = props => {
             <div className='favorites-list'>
                 {
                     props.songData.map(song => {
-                        return <SongCard key={song.id} song={song} />
+                        return <SongCard key={song.id} song={song} changeHistory={props.changeHistory}/>
                     })
                 }
             </div>
