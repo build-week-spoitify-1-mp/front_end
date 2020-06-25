@@ -3,10 +3,29 @@ import { useParams } from 'react-router-dom'
 import { axiosSpotify } from '../../../utils/axiosSpotify'
 import axios from 'axios'
 
+// Style
+import styled from 'styled-components'
+import { accent_main } from '../../theme'
+
+// Components
+import SongCard from '../SongCard'
+
+const SuggestionsPage = styled.div`
+    h3 {
+        text-align: center;
+        color: ${accent_main};
+        font-weight: 900;
+    }
+    .reccomend-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+`
+
 const Suggestions = props => {
     const [songID, setSongID] = useState()
-    const [song, setSong] = useState()
-    const [suggestions, setSuggestions] = useState()
+    const [song, setSong] = useState({name: '', artists: []})
+    const [suggestions, setSuggestions] = useState([])
 
     let trackid = useParams().trackid
 
@@ -19,25 +38,46 @@ const Suggestions = props => {
     }, [trackid, props.lastFaveTrackID])
 
     useEffect(() => { // Get base song data
-        axiosSpotify()
+        if(songID){
+            axiosSpotify()
             .get(`/tracks/${songID}`)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 setSong(response.data)
             })
             .catch(error => {console.log(error)})
-    }, [songID, trackid])
+        }
+    }, [songID])
 
+    useEffect(() => {
+        if(songID) {
+            axiosSpotify()
+                .get(`/recommendations?seed_tracks=${songID}`)
+                .then(res => {
+                    // console.log(res.data.tracks)
+                    setSuggestions(res.data.tracks)
+                })
+                .catch(err => { 
+                    console.log('There be an error', err)
+                })
+        }
+    }, [songID])
 
 
     return (
-        <div className='suggestions'>
-            <h3>Suggestions</h3>
+        <SuggestionsPage>
+            <h3>Suggestions for {songID ? song.name: ''}</h3>
             <div className="main-song">
+                
             </div>
-            <div></div>
-
-        </div>
+            <div className="reccomend-list">
+                {
+                    suggestions.map(song => {
+                        return <SongCard key={song.id} song={song} changeHistory={props.changeHistory}/>
+                    })
+                }
+            </div>
+        </SuggestionsPage>
     )
 }
 
