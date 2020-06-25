@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 // Reducers
-import { songReducer } from './reducers/songReducer'
+import { songReducer } from './reducers/SongReducer'
 
 // Components
 import PrivateRoute from './components/PrivateRoute'
