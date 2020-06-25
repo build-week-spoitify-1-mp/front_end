@@ -75,10 +75,10 @@ const Dashboard = props => {
                         <Favorites songData={props.songData} changeHistory={changeHistory}/>
                     </Route>
                     <Route exact path={`${path}/suggestions`}>
-                        <Suggestions lastFaveTrackID={{...props.user.favesongs[(props.user.favesongs.length - 1)]}}/>
+                        <Suggestions changeHistory={changeHistory} lastFaveTrackID={{...props.user.favesongs[(props.user.favesongs.length - 1)]}}/>
                     </Route>
                     <Route path={`${path}/suggestions/:trackid`}>
-                        <Suggestions />
+                        <Suggestions changeHistory={changeHistory}/>
                     </Route>
 
                     <Switch>

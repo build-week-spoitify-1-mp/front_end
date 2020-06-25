@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
@@ -33,6 +33,11 @@ const Login = props => {
       .catch(error => console.log(error));
   }
 
+  useEffect(() => {
+    if(window.localStorage.getItem('user_token')){
+      props.history.push('/dashboard')
+    }
+  }, [])
   
 
   return (
