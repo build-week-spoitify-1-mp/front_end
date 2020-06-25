@@ -16,7 +16,7 @@ const StyledHome = styled.div`
         font-weight: 900;
     }
     
-    p {
+    p, ul {
         line-height: 2;
         color: ${text};
     }
@@ -36,13 +36,12 @@ const Home = props => {
             <div className='home-body'>
                 <h3>Welcome to Spotify Suggester!</h3>
                 <p>Get started by searching for one of your favorite songs using the search bar in the top left corner of the application!</p>
-                <p>Hovering over a song will give you three options:
-                    <ul>
-                        <li><FontAwesomeIcon icon={faHeart} /> Favorite: Add a song to your favorites list.</li>
-                        <li><FontAwesomeIcon icon={faCompactDisc} /> Get Suggestion: Get song reccomendations based on that song. </li>
-                        <li><FontAwesomeIcon icon={faLink} /> Link: Go to Spotify page for that song.</li>
-                    </ul>
-                </p>
+                <p>Hovering over a song will give you three options:</p>
+                <ul>
+                    <li><FontAwesomeIcon icon={faHeart} /> Favorite: Add a song to your favorites list.</li>
+                    <li><FontAwesomeIcon icon={faCompactDisc} /> Get Suggestion: Get song reccomendations based on that song. </li>
+                    <li><FontAwesomeIcon icon={faLink} /> Link: Go to Spotify page for that song.</li>
+                </ul>
             </div>
         </StyledHome>
     )

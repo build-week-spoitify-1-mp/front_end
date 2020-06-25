@@ -36,19 +36,18 @@ const StyledLogin = styled.div`
         outline: none;
       }
     }
-
-    button {
-      margin: 4% 0 2% 0;
-      background-color: ${accent_main}; /* Green */
-      border: none;
-      border-radius: 10px;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-    }
+  }
+  button {
+    margin: 4% 0 2%;
+    background-color: ${accent_main}; /* Green */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
   }
 `
 
@@ -108,7 +107,8 @@ const Login = props => {
             onChange={handleChanges}
           />
           <button>Log in</button>
-        </form>
+          </form>
+          <button onClick={() => {props.history.push('/signup')}}>Signup</button>
       </StyledLogin>
   );
 };

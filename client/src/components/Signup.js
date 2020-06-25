@@ -78,8 +78,6 @@ const Signup = props => {
         .catch(error => console.log(error));
     }
   
-    
-  
     return (
       <StyledSignup>
         <h2>Signup!</h2>
