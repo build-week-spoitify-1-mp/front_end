@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import PastTickets from "./PastTickets";
+import * as yup from "yup";
 
 function Ticket() {
+
+  const formSchema = yup.object().shape({
+    name: yup.string().required("Name is a required field"),
+    email: yup.string().required("Email is a required field"),
+    issue: yup.string().required("You must give us a issue")
+  });
+  
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    issue: ""
+  });
 
   const [myTicket, setMyTicket] = useState(
     {
@@ -13,10 +26,26 @@ function Ticket() {
   );
     
   const inputChange = (event) => {
+    event.persist()
     setMyTicket({
       ...myTicket,
       [event.target.name]: event.target.value
     });
+    yup.reach(formSchema, event.target.name)
+    .validate(event.target.value)
+    .then( valid => {
+      setErrors({
+        ...errors,
+        [event.target.name]: ""
+      })
+    })
+    .catch( err => {
+      console.log(err.errors);
+      setErrors({
+        ...errors,
+        [event.target.name]: err.errors[0]
+      })
+    })
   };
 
   const [finalTicket, setFinalTicket] = useState([]);
@@ -54,6 +83,7 @@ function Ticket() {
             value={myTicket.name}
             onChange={inputChange} 
           />
+          {errors.name.length > 0 ? <p className="error">{errors.name}</p> : null}
         </label>
 
         <label htmlFor="email" className="topTwoInputs">Email:
@@ -65,6 +95,7 @@ function Ticket() {
             value={myTicket.email}
             onChange={inputChange} 
           />
+          {errors.name.length > 0 ? <p className="error">{errors.email}</p> : null}
         </label>
         <br />
         <label htmlFor="issue" className="bottomInput">Tell us what issue you are haveing:
@@ -78,6 +109,7 @@ function Ticket() {
             value={myTicket.issue}
             onChange={inputChange} 
           />
+          {errors.name.length > 0 ? <p className="error">{errors.issue}</p> : null}
         </label>
         <br /><button type="submit" className="submit">Submit Ticket</button>
       </form>
