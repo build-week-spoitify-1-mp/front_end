@@ -32,13 +32,11 @@ const StyledDashboard = styled.div`
 `
 
 // General
-// TODO: New user has tags suggest on homepage
-// TODO: Existing user UX: HOME display current favorites, click to go to suggestions
 // TODO: Pages: Home(auto), Favorites, Search(?), Suggestions
-// TODO: Hook up adding/deleteing favorite song
-
-// Sidebar
-// TODO: add logout button to bottom
+// TODO: Style Login and Signup
+// TODO: Make & Style Home page
+// TODO: Style site!
+// TODO: FIX BUGS WITH LOGIN AND SIGNUP
 
 const Dashboard = props => {
     const { getUser, getSongs } = props

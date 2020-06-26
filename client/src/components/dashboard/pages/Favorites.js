@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 // Style
 import styled from 'styled-components'
@@ -8,7 +8,7 @@ import { accent_main } from '../../theme'
 import SongCard from '../SongCard'
 
 const FavoritesPage = styled.div`
-    h3 {
+    h2 {
         text-align: center;
         color: ${accent_main};
         font-weight: 900;
@@ -16,13 +16,14 @@ const FavoritesPage = styled.div`
     .favorites-list {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 `
 
 const Favorites = props => {
     return (
         <FavoritesPage>
-            <h3>Favorites</h3>
+            <h2>Favorites</h2>
             <div className='favorites-list'>
                 {
                     props.songData.map(song => {

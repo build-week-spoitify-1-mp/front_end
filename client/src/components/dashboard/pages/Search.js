@@ -7,10 +7,19 @@ import SongCard from '../SongCard'
 
 // Style
 import styled from 'styled-components'
+import { accent_main } from '../../theme'
 
 const StyledSearchList = styled.div`
-    display: flex;
-    flex-wrap: wrap;
+    h2 {
+        text-align: center;
+        color: ${accent_main};
+        font-weight: 900;
+    }
+    .search-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
 `
 
 const Search = props => {
@@ -27,9 +36,9 @@ const Search = props => {
     }, [query])
 
     return (
-        <div>
-            <h3>Search</h3>
-            <StyledSearchList>
+        <StyledSearchList>
+            <h2>Search Results</h2>
+                <div className='search-list'>
                 {
                     query !== ''
                     ? songList.map(song => {
@@ -37,8 +46,8 @@ const Search = props => {
                     })
                     : <p>Please search for a song or artist</p>
                 }
-            </StyledSearchList>
-        </div>
+            </div>
+         </StyledSearchList>
     )
 }
 

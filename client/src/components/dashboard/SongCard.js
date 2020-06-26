@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledCard = styled.div`
     margin: 0 2%;
+    margin-bottom: 2%;
     width: 20%;
     background-color: ${background};
     border-radius: 10px;
@@ -107,6 +108,10 @@ const SongCard = props => {
         props.changeHistory(`/dashboard/suggestions/${props.song.id}`)
     }
 
+    const handleLink = () => {
+        window.open(`${props.song.external_urls.spotify}`,'_blank')
+    }
+
     useEffect(() => {
         // set faveID to favesong object if found in the favesong
         const result = props.user.favesongs.find((favesong) => {
@@ -138,7 +143,7 @@ const SongCard = props => {
                     <button>
                         <FontAwesomeIcon icon={faCompactDisc} onClick={handleSuggest}/>
                     </button>
-                    <button><FontAwesomeIcon icon={faLink} /></button>
+                    <button><FontAwesomeIcon icon={faLink} onClick={handleLink} /></button>
                 </div>
             </div>
             <div className='text-container'>
