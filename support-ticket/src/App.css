@@ -1,0 +1,92 @@
+.app {
+  background-color: #282c34;
+  min-height: 100vh;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.centerDiv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.centerPBig {
+  font-size: 2.75rem;
+  margin: 20% 0 0 0;
+}
+
+.centerP {
+  font-size: 1.25rem;
+}
+
+.options p {
+  font-size: 1.25rem;
+  width: 34%;
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.topTwoInputs {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+
+.bottomInput {
+  font-size: 1.5rem;
+}
+
+.issues {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit {
+  height: 40px;
+  width: 110px;
+  background-color: #282c34;
+  color: white;
+  margin: -20px -50px; 
+  position: relative;
+  left: 45%;
+  text-decoration: none;
+  border: solid white 2px;
+  padding: 1%;
+}
+.submit a {
+  text-decoration: none;
+  color: white;
+}
+
+.submitAccount {
+  height: 40px;
+  width: 110px;
+  background-color: #282c34;
+  color: white;
+  border: solid white 2px;
+}
+
+.supportLink {
+  text-decoration: none;
+  color: white;
+}
+.pastTicket {
+  text-align: center;
+  padding-bottom: 2%;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+}
